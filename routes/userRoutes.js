@@ -9,4 +9,10 @@ router.post('/', userController.createUser);
 //Get all Users
 router.get('/', userController.getAllUsers);
 
+//Get User by ID
+router.get('/:id', userController.getUserById);
+
+//find and update User
+router.put('/:id', userController.findAndUpdate);
+
 module.exports = router

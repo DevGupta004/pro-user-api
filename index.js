@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const connectDB = require('./config/db');
 
@@ -14,7 +13,7 @@ app.use(express.json());
 connectDB().then(() => {
     
  // Routes
- app.route('/users', userRoutes);
+ app.use('/users', userRoutes); 
 
  // Start the server
 const PORT = process.env.PORT || 3000;

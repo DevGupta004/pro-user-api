@@ -15,6 +15,9 @@ your-project-name/
 ├── config/
 │   └── db.js              // Database configuration file
 │
+├── services/              // Directory for external Axios requests
+│   └── otpService.js      // Service module for OTP email API
+│
 ├── index.js               // Entry point of your application
 │
 └── package.json           // Node.js project configuration

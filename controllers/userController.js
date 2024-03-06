@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const User = require("../models/user");
+const User = require("../models/userModel");
+const { sendOtpEmail } = require("../services/otpService");
 
 exports.createUser = async (req, res) => {
   const email = req.body.email;
@@ -9,7 +10,9 @@ exports.createUser = async (req, res) => {
     if (users && users.email === email) {
       res.status(201).send("User already exists");
     } else {
-      const user = new User(req.body);
+      const resSendOtp = await sendOtpEmail(email);
+      const user = new User({...req.body, lastOtp: resSendOtp.OTP});
+      console.log(user);
       await user.save();
       res.status(201).send(user);
     }

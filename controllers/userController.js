@@ -4,11 +4,11 @@ const { sendOtpEmail } = require("../services/otpService");
 
 exports.createUser = async (req, res) => {
   const email = req.body.email;
-  const users = await User.findOne({ email });
+  const user = await User.findOne({ email });
 
   try {
-    if (users && users.email === email) {
-      res.status(201).send("User already exists");
+    if (user && user.email === email) {
+      res.status(201).send({message: "User already exists", userId: user._id});
     } else {
       const resSendOtp = await sendOtpEmail(email);
       const user = new User({...req.body, lastOtp: resSendOtp.OTP});

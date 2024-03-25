@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     employeeId: {type: String},
     orginationName: {type: String, default: 'Pro-Focus'},
     profileImage: {type: String},
-    isUserVerified: {type: Boolean},
+    isUserVerified: {type: Boolean, default: false},
 });
 
 const User = mongoose.model('User', userSchema);
